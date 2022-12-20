@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { Datum } from '../gifs/interfaces/gifs.interface';
 import { GifsService } from '../gifs/services/gifs.service';
 
 @Component({
@@ -8,16 +9,28 @@ import { GifsService } from '../gifs/services/gifs.service';
 })
 export class SidebarComponent {
 
+  @Output() data = new EventEmitter<Datum[]>();
+
+  gifs!: Datum[];
+
   title: string = "Aplicación de Gifs";
 
   get historial() {
     return this.gifsService.historial;
   }
 
-  constructor( private gifsService: GifsService){}
+  constructor( public gifsService: GifsService){}
 
   buscar( termino: string ){
-    this.gifsService.buscarGifs(termino);
+    this.gifsService.buscarGifs(termino)
+      .subscribe(result => {
+        this.gifs = result.data;
+        this.data.emit(this.gifs);
+      })
+  }
+
+  delete(index: number){
+    this.gifsService.deleteBusqueda(index);
   }
 
 }

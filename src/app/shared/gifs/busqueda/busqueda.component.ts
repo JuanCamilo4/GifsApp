@@ -17,11 +17,14 @@ export class BusquedaComponent {
   */
   @ViewChild('txtBuscar') txtBuscar!: ElementRef;
 
-  gifs!: Datum[];
+  gifs: Datum[] = [];
+
+  load: boolean = false;
 
   constructor( private gifsService: GifsService){}
 
   buscar() {
+    this.load = true;
     const valor = this.txtBuscar.nativeElement.value; 
     if (valor.trim().length == '') {
       return;
@@ -30,8 +33,13 @@ export class BusquedaComponent {
       .subscribe(result => {
         console.log(result);
         this.gifs = result.data;
+        this.load = false;
       })
     //this.txtBuscar.nativeElement.value = '';
+  }
+
+  reciveData(data: Datum[]) {
+    this.gifs = data;
   }
 
 }

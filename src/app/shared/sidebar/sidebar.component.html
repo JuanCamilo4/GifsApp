@@ -1,5 +1,10 @@
 <div class="d-flex justify-content-center align-items-center mt-4 mb-3 container-history">
-  <button class="btn-history" *ngFor="let item of historial" (click)="buscar(item)">
-    {{item  | titlecase}}
+  <button 
+    class="btn-history"
+    *ngFor="let item of historial; let i = index"
+    (click)="buscar(item)"
+    [ngClass]="{'bg-primary text-white': item == gifsService.query}">
+    {{item  | titlecase}} 
+    <i class="bi bi-x delete" (click)="delete(i)" *ngIf="item != gifsService.query"></i>
   </button>
 </div>

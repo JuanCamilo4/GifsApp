@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Datum } from '../interfaces/gifs.interface';
 import { GifsService } from '../services/gifs.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { GifsService } from '../services/gifs.service';
 })
 export class ResultadosComponent{
 
-  @Input() gifs: any;
+  @Input() gifs!: Datum[];
 
   constructor(private gifsService: GifsService){}
 

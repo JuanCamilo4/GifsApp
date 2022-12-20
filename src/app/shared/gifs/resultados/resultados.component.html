@@ -8,8 +8,8 @@
         </div>
     </div>
 
-    <div>
-        <h3 class="p-2 text-center">Para buscar tiene que presionar enter 2 veces</h3>
+    <div *ngIf="gifs.length == 0">
+        <h3 class="p-2 text-center">No hay gifs para mostrar</h3>
     </div>
 </div>
 

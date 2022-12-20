@@ -13,6 +13,8 @@ export class GifsService {
 
   public resultados: Datum[] = []; 
 
+  public query: string = '';
+
   get historial(){
     return [...this._historial];
   }
@@ -26,13 +28,16 @@ export class GifsService {
 
   buscarGifs(query: string){
     query = query.trim().toLowerCase();
-
+    this.query = query;
+    
     const params = new HttpParams()
       .set('api_key', this.apiKey)
       .set('limit', '20')
       .set('q', query);
 
     const url = `${this.servicioUrl}/search`;
+    this.setBusqueda(query);
+    
     return this.http.get<SearchGifsResponse>(url, {params});
   }
 
@@ -42,6 +47,11 @@ export class GifsService {
       this._historial = this._historial.splice(0, 10);
       localStorage.setItem('historial', JSON.stringify(this._historial));
     }
+  }
+
+  deleteBusqueda(index: number){
+    this._historial.splice(index, 1);
+    localStorage.setItem('historial', JSON.stringify(this._historial));
   }
 
 }
