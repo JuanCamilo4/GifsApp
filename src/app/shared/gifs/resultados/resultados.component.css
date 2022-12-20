@@ -1,0 +1,11 @@
+.container-result{
+    background-color: #eee;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+.card_container{
+    width: 30%;
+}

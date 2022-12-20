@@ -25,30 +25,23 @@ export class GifsService {
   }
 
   buscarGifs(query: string){
-
     query = query.trim().toLowerCase();
 
+    const params = new HttpParams()
+      .set('api_key', this.apiKey)
+      .set('limit', '20')
+      .set('q', query);
+
+    const url = `${this.servicioUrl}/search`;
+    return this.http.get<SearchGifsResponse>(url, {params});
+  }
+
+  setBusqueda(query: string){
     if (!this._historial.includes(query)) {
       this._historial.unshift(query);
       this._historial = this._historial.splice(0, 10);
-
       localStorage.setItem('historial', JSON.stringify(this._historial));
-      
     }
-
-    //El Http params es para organizar el link de la API
-    const params = new HttpParams()
-      .set('api_key', this.apiKey)
-      .set('limit', '10')
-      .set('q', query);
-
-    this.http.get<SearchGifsResponse>(`${this.servicioUrl}/search`, {params})
-      .subscribe( (res: SearchGifsResponse) => {
-        console.log(res);
-        this.resultados = res.data;
-        console.log(this.resultados);
-        localStorage.setItem('resultados', JSON.stringify(this.resultados));
-      })
   }
 
 }

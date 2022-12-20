@@ -1,7 +1,15 @@
-<h5>Buscar</h5>
-<input 
-    type="text" 
-    class="form-control"
-    placeholder="Buscar gifs."
-    (keyup.enter)="buscar()"
-    #txtBuscar>
+<div class="container">
+    <h2 class="display-6 text-center mb-3">Buscador de Gifs</h2>
+
+    <input 
+        type="text" 
+        class="form-control input-form"
+        placeholder="Buscar gifs."
+        (keyup.enter)="buscar()"
+        #txtBuscar>
+    
+    <app-sidebar></app-sidebar>
+</div>
+
+<app-resultados [gifs]="gifs"></app-resultados>
+

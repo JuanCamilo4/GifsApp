@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GifsPageComponent implements OnInit {
 
+  gifs: [] = [];
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  obtenerGif(result: any){
+    this.gifs = result;
   }
 
 }

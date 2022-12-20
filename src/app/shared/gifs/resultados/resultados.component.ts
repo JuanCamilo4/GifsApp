@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
 
 @Component({
@@ -8,9 +8,7 @@ import { GifsService } from '../services/gifs.service';
 })
 export class ResultadosComponent{
 
-  get resultados() {
-    return this.gifsService.resultados;
-  }
+  @Input() gifs: any;
 
   constructor(private gifsService: GifsService){}
 

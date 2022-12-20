@@ -1,16 +1,5 @@
-<div class="bg-dark border-right p-3" id="sidebar">
-    <h3 class="text-light">
-      {{ title }}
-    </h3>
-
-    <hr class="text-light">
-
-    <div class="list-group list-reset">
-      <a *ngFor="let item of historial"
-        (click)="buscar(item)"
-        href="#"
-        class="list-group-item list-group-item-action">
-        {{item  | titlecase}}
-      </a>
-    </div>
-  </div>
+<div class="d-flex justify-content-center align-items-center mt-4 mb-3 container-history">
+  <button class="btn-history" *ngFor="let item of historial" (click)="buscar(item)">
+    {{item  | titlecase}}
+  </button>
+</div>
